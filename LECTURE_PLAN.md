@@ -33,27 +33,39 @@ that run in GitHub Codespaces (preferred) or Google Colab.
 `lectures/01_QuantumLight_PhotonStatistics.ipynb`
 
 **Learning objectives** — students can:
-1. explain why photon-number statistics distinguish light sources that have
-   identical average intensity;
-2. write down P(n) for coherent, thermal, and Fock states;
-3. compute and interpret the Mandel Q parameter.
+1. explain why photon-number statistics distinguish sources of identical
+   average intensity;
+2. write down and recognize P(n) for coherent, thermal, and Fock states at
+   any brightness;
+3. compute and interpret the Mandel Q parameter;
+4. estimate shot noise in real measurements and explain LIGO's squeezed-
+   vacuum injection qualitatively.
 
 **Timing (60 min):**
-- 0–10 · Motivation: three lasers pointers walk into a bar — same brightness,
-  different physics. What a photon counter actually records (click streams).
-- 10–25 · The quantized field mode in one slide chain: â, â†, n̂; Fock states
-  |n⟩ as the number basis; coherent states |α⟩ as the "most classical" states;
-  thermal states as the maximum-entropy mixed state.
-- 25–40 · Photon number distributions: Poisson vs Bose–Einstein vs δₙ,ₘ —
-  live plots at equal ⟨n⟩; photon-number variance; Mandel Q; sub-Poissonian
-  light as a non-classicality witness (no classical intensity distribution
-  can do Q < 0).
-- 40–50 · Where each lives in the lab: laser, filtered lamp / rotating ground
-  glass, single emitters. First look at real click data.
-- 50–60 · Check-your-understanding questions + buffer.
+- 0–7 · History: the reluctant photon, 1900–1926 (Planck → Einstein 1905 →
+  Taylor's feeble-light fringes → Millikan → Compton → the word "photon").
+- 7–12 · Motivation: three sources, same power, different physics; the click
+  stream as the raw datum.
+- 12–22 · Field quantization in one pass: mode = oscillator, quadratures,
+  zero-point fluctuations; Fock / coherent / thermal states; Arecchi 1965.
+- 22–30 · The fingerprints: P(n) at equal n̄; P(n) across brightness
+  (n̄ = 0.2 / 4 / 25 — why faint-light statistics are hard to distinguish);
+  phase-space triptych (Wigner functions, negativity as non-classicality).
+- 30–38 · Variance and Mandel Q; Einstein's 1909 fluctuation formula
+  (wave + particle terms); classical bound Q ≥ 0.
+- 38–48 · Shot noise in the real world: SNR = √N̄ with worked numbers
+  (night photos, laser pointer, single-molecule fluorescence); **LIGO case
+  study**: Δφ = 1/√N̄, why 200 kW; Caves 1981 — vacuum enters the dark
+  port; squeezed vacuum injection (running since 2019); squeezed-vacuum
+  Wigner function and its even-photon-number P(n) → bridge to SPDC (Wed).
+- 48–55 · Multimode detection: negative binomial, Q = n̄/M — why daylight
+  hides Bose–Einstein statistics; click-stream preview of Tuesday.
+- 55–60 · Check-your-understanding (7 questions) + buffer.
 
-**Key figures (all generated in-notebook):** P(n) comparison at ⟨n⟩ = 4;
-variance vs mean for the three families; Mandel Q vs mean thermal/coherent.
+**Key figures (all generated in-notebook):** P(n) comparison at n̄ = 4;
+P(n) across three brightness regimes; Wigner triptych; variance vs mean;
+"same scene at three light levels" shot-noise strips; vacuum vs squeezed
+vacuum; negative-binomial multimode washout; three click streams.
 
 ---
 
@@ -63,21 +75,25 @@ variance vs mean for the three families; Mandel Q vs mean thermal/coherent.
 
 **Learning objectives** — students can:
 1. build coherent/thermal/Fock states in QuTiP and extract P(n), ⟨n⟩, Δn²;
-2. Monte-Carlo sample detector clicks from a photon-number distribution;
-3. show numerically what optical loss does to sub-Poissonian statistics.
+2. Monte-Carlo sample detector clicks and estimate statistics *with bootstrap
+   error bars*;
+3. show numerically what loss does to sub-Poissonian light;
+4. plot Wigner functions and compare non-classicality witnesses.
 
 **Timing (60 min):**
 - 0–10 · Everyone running: Codespace check, fork check (00 notebook is the
   reference). Helpers circulate.
-- 10–20 · Worked example: `coherent(N, alpha)`, `thermal_dm(N, nbar)`,
-  `fock(N, n)`; extracting P(n) from the density matrix diagonal.
-- 20–45 · Exercises (in pairs):
-  - E1: reproduce the equal-⟨n⟩ P(n) figure from Lecture 1
-  - E2: Mandel Q function + test on all three states
-  - E3: sample 10 000 "clicks" from P(n), recompute Q from the sample —
-    statistics of estimating statistics
-- 45–60 · Stretch: beamsplitter loss model (Fock state through transmission
-  η) — watch Q rise toward 0; discussion of why loss "classicalizes".
+- 10–18 · Worked example: `coherent()`, `thermal_dm()`, `fock()`; P(n) from
+  the density-matrix diagonal.
+- 18–45 · Exercises (in pairs):
+  - E1: reproduce the equal-n̄ fingerprint figure
+  - E2: `mandel_Q` function + self-checks
+  - E3: sample 10 000 clicks, estimate Q from data, bootstrap error bar;
+    when is Q < 0 certified at 95% confidence?
+  - E4: Wigner functions of five states — which witness fires for which?
+  - E5: laser near threshold as coherent/thermal mixture — Q(p), Arecchi
+- 45–60 · Stretch: binomial-thinning loss model on |4⟩, Q(η) = −η;
+  discussion: why loss "classicalizes"; optional first submission.
 
 ---
 
@@ -86,26 +102,37 @@ variance vs mean for the three families; Mandel Q vs mean thermal/coherent.
 `lectures/03_Correlations_Generation_Detection.ipynb`
 
 **Learning objectives** — students can:
-1. define g⁽²⁾(τ) and state its value at τ=0 for coherent, thermal, Fock;
-2. explain why the HBT beamsplitter geometry measures g⁽²⁾ despite detector
-   dead time;
-3. compare single-photon sources (attenuated laser, heralded SPDC, quantum
-   emitters) and detectors (SPAD, SNSPD, TES) by the numbers that matter.
+1. define g⁽²⁾(τ), prove the classical bound g⁽²⁾(0) ≥ 1, state the quantum
+   values;
+2. explain the HBT geometry (dead time, normalization, error bars) and its
+   stellar-interferometry origin;
+3. compare sources and detectors by the figures of merit that matter.
 
 **Timing (60 min):**
-- 0–10 · Recap via quiz; the limit of P(n): it says nothing about *time*.
-- 10–25 · Intensity correlations: classical g⁽²⁾ ≥ 1 (Cauchy–Schwarz), quantum
-  g⁽²⁾(0) = 1 − 1/n for |n⟩; bunching vs antibunching; g⁽²⁾(τ) shapes.
-- 25–35 · Hanbury Brown & Twiss: from stellar diameters (1956) to the
-  workhorse of single-photon characterization; why one detector + dead time
-  fails and a 50:50 beamsplitter + start–stop coincidences works; higher-order
-  g⁽ⁿ⁾ and multiplexed HBT.
-- 35–48 · Generation: attenuated laser is *still Poissonian* (the g⁽²⁾ proof);
-  SPDC pairs + heralding; quantum dots and color centers; source figures of
-  merit (purity, indistinguishability, brightness).
-- 48–58 · Detection: SPAD, SNSPD, TES; click vs photon-number-resolving;
-  efficiency / dark counts / jitter / dead time table; PNR by multiplexing.
-- 58–60 · Bridge to the afternoon: "you get three mystery click streams."
+- 0–5 · Warm-up quiz (4 questions from Monday).
+- 5–15 · **History: the 1956 HBT scandal** — radio-astronomy origins, the
+  tabletop experiment, Brannen & Ferguson's failed replication ("major
+  revision of quantum mechanics"), Purcell's resolution; aftermath timeline
+  (Narrabri → Glauber 1963 → Kimble 1977 → Grangier 1986 → today).
+- 15–27 · g⁽²⁾(τ): definition, normal ordering; two-line Cauchy–Schwarz
+  proof of g⁽²⁾ ≥ 1; quantum values 2 / 1 / 1−1/n; the 1/2 single-photon
+  certificate; g⁽²⁾ = 1 + Q/n̄ and why faint-light physics measures g⁽²⁾
+  (loss invariance!).
+- 27–35 · Shapes in time: bunching decay, antibunching recovery; **driven
+  two-level atom: the dip rings at the Rabi frequency** — dip shape as free
+  spectroscopy.
+- 35–42 · HBT in practice: geometry, accidental normalization, start–stop
+  vs streaming taggers, Poisson error bars; **stellar version**: van
+  Cittert–Zernike, the Sirius baseline estimate.
+- 42–46 · Higher orders: g⁽ᵏ⁾ table, thermal k!, why g⁽³⁾ separates noisy
+  |1⟩ from clean |2⟩.
+- 46–53 · Generation: the four-row source table; worked example — why the
+  attenuated laser fails QKD (photon-number splitting); SPDC + heralding
+  teaser; quantum-dot state of the art.
+- 53–58 · Detection: SPAD/SNSPD/TES table; efficiency, dark counts,
+  afterpulsing, jitter; **simulated TES pulse-height spectrum** — photon
+  counting as calorimetry.
+- 58–60 · Bridge: "you get three mystery click streams after the break."
 
 ---
 
@@ -115,22 +142,23 @@ variance vs mean for the three families; Mandel Q vs mean thermal/coherent.
 
 **Learning objectives** — students can:
 1. compute g⁽²⁾(τ) from raw time tags via a coincidence histogram;
-2. classify unknown sources by their photon statistics;
-3. quantify how background counts degrade an antibunching dip.
+2. classify unknown sources with quantitative evidence and error bars;
+3. quantify background degradation of an antibunching dip;
+4. fit correlation times and interpret them as source physics.
 
 **Timing (60 min):**
-- 0–10 · The dataset: `data/source_A/B/C_timetags.npz` — HBT time tags
-  (detector 1 & 2 arrival times) from three unlabeled simulated sources.
-  Worked example: coincidence histogram for source A.
+- 0–10 · The dataset (three unlabeled HBT recordings); worked example:
+  coincidence histogram + normalization for source A.
 - 10–40 · Exercises:
-  - E1: g⁽²⁾(τ) for all three sources; normalize by the uncorrelated rate
-  - E2: identify which is coherent / thermal / single-emitter, with evidence
-  - E3: g⁽²⁾(0) vs background-count fraction — when does a single-photon
-    source stop looking "single" (g⁽²⁾(0) < 0.5 criterion)?
-- 40–50 · Cross-check in QuTiP: g⁽²⁾(0) = ⟨â†â†ââ⟩/⟨â†â⟩² for the matching
-  states — theory vs "measured" estimate on one plot.
-- 50–60 · First submission: push completed notebook to
-  `submissions/<username>/` (walkthrough on screen).
+  - E1: g⁽²⁾(τ) for all three sources, g⁽²⁾(0) table
+  - E2: the verdict — identity + evidence (binning vs dark counts discussion)
+  - E3: add background, watch the g⁽²⁾(0) < 0.5 certificate fail; compare
+    with the analytic background model
+  - E4: fit τ_c and τ_r with Poisson error bars (`curve_fit`); why the
+    antibunching recovery constant is NOT the cycle duration
+- 40–50 · Cross-check in QuTiP: operator g⁽²⁾(0) vs time-tag estimates.
+- 50–60 · First mandatory submission: push to `submissions/<username>/`
+  (walkthrough on screen).
 
 **Provided:** `data/make_timetags.py` (seeded, committed) generates the
 datasets; students may re-generate with different parameters.
@@ -142,23 +170,29 @@ datasets; students may re-generate with different parameters.
 `lectures/05_Lab_HOM_Interference.ipynb`
 
 **Learning objectives** — students can:
-1. build and sample a linear-optical circuit in Perceval;
-2. predict and verify the two-photon output distribution of a 50:50
-   beamsplitter (|2,0⟩ + |0,2⟩, no coincidences);
-3. simulate a HOM dip and extract its visibility.
+1. build and sample linear-optical circuits in Perceval;
+2. distinguish single-photon (first-order) from two-photon (HOM)
+   interference experimentally;
+3. simulate a HOM dip and extract its visibility;
+4. demonstrate NOON-state super-resolution.
 
 **Timing (60 min):**
-- 0–15 · Perceval crash course (worked, run-along): `BasicState`, `Circuit`,
-  `BS`/`PS`, `Processor` + sampling; single photon on a beamsplitter first.
-- 15–30 · The HOM effect: send |1,1⟩ into a 50:50 BS; where did the
-  coincidences go? The two-amplitude cancellation, drawn and simulated.
-- 30–50 · Exercises:
-  - E1: coincidence probability vs beamsplitter reflectivity (analytic
-    (R−T)² overlay)
-  - E2: HOM dip — coincidences vs photon distinguishability (delay); dip
-    visibility; partially distinguishable photons
-- 50–60 · Why this matters: HOM visibility as *the* source-quality benchmark;
-  two-photon gates in photonic QC rest on this interference.
+- 0–12 · Perceval crash course (run-along): `BasicState`, `Circuit`, `BS`,
+  `Processor`, `probs()` vs `sample_count()`; one photon on a beamsplitter.
+- 12–20 · **Taylor 1909 on a chip**: single-photon MZI fringes — one photon
+  interferes with itself, and classical waves explain it perfectly.
+- 20–30 · The HOM effect: |1,1⟩ on a 50:50 BS, amplitude cancellation,
+  photon bunching — no classical explanation.
+- 30–52 · Exercises:
+  - E1: coincidences vs reflectivity, (1−2R)² overlay
+  - E2: the HOM dip via source indistinguishability; Gaussian delay mapping;
+    visibility
+  - E3: two-photon interference has no phase (wiggle test) — contrast with
+    the MZI fringe
+  - E4: NOON state in the MZI — coincidence fringe at 2φ, super-resolution;
+    link back to LIGO squeezing
+- 52–60 · Wrap-up: HOM 1987 as sub-picosecond metrology [Hong1987]; dip
+  visibility as *the* source benchmark; HOM as the engine of photonic QC.
 
 ---
 
@@ -167,24 +201,31 @@ datasets; students may re-generate with different parameters.
 `lectures/06_Lab_HeraldedFockStates.ipynb`
 
 **Learning objectives** — students can:
-1. simulate a two-mode SPDC-like source and herald Fock states from it;
-2. characterize a heralded state via P(n) and g⁽²⁾(0);
-3. optimize a heralded source under loss with a quantitative figure of merit.
+1. simulate a two-mode SPDC source and herald Fock states from it;
+2. show that one arm alone is thermal (entanglement seen from one side);
+3. characterize heralded states via P(n) and g⁽²⁾(0) and optimize under loss;
+4. explain what boson sampling is and why distinguishability switches it off.
 
 **Timing (60 min):**
-- 0–10 · From lecture 3 to code: two-mode squeezed vacuum Σ λⁿ|n,n⟩; detect
-  n photons in the idler ⇒ project the signal onto |n⟩.
-- 10–25 · Worked example: heralded single photon — P(n|herald), heralded
-  g⁽²⁾(0), heralding rate vs squeezing parameter (the brightness/purity
-  trade-off: higher pump ⇒ more multi-pair events).
-- 25–45 · Mini-challenge (small groups): add idler loss + a click (non-PNR)
-  herald detector; maximize (heralding efficiency × single-photon purity);
-  leaderboard of best figures of merit.
-- 45–55 · PNR heralding: with a number-resolving idler detector, herald
-  |2⟩ — verify with g⁽²⁾(0) = 1/2.
-- 55–60 · Wrap-up: from these parts (sources + BS + PNR detection) to boson
-  sampling and measurement-based photonic QC; reading pointers; final push
-  of student work.
+- 0–8 · From lecture 1's squeezed vacuum to the two-mode squeezed vacuum:
+  Σ λⁿ|n,n⟩ in Perceval; pair correlation sanity check.
+- 8–14 · E0 (warm-up): the signal marginal is thermal — numerically verify
+  Bose–Einstein + g⁽²⁾ = 2 (Tuesday's quiz, closed).
+- 14–22 · Worked: ideal PNR herald → perfect |1⟩; why it's too good to be
+  true (idler loss, click detectors).
+- 22–24 · Loss = beamsplitter to an unwatched mode; lossy herald worked
+  example (multi-pair contamination appears).
+- 24–42 · **Design challenge** (small groups): click-detector herald,
+  η_i = 0.6, knob = λ; plot brightness, purity, FOM; optimal λ; group
+  competition with g⁽²⁾(0) < 0.1 constraint; better-detector variant.
+- 42–48 · Worked finale: PNR herald on n = 2 → |2⟩ with g⁽²⁾(0) = 1/2
+  [Cooper2013].
+- 48–56 · **Boson sampling in sixty seconds**: KLM 2001 → Aaronson–Arkhipov
+  2011 → Jiuzhang 2020; live demo — 2 photons in a random 4-mode circuit,
+  indistinguishable vs distinguishable output distributions
+  ("distinguishability is the off-switch").
+- 56–60 · Wrap-up: the three-day toolbox table; reading pointers; final
+  submission push; FOM winners announced at the discussion session.
 
 ---
 
@@ -196,7 +237,8 @@ datasets; students may re-generate with different parameters.
   every code cell is commented, no clever one-liners, NumPy-style docstrings
   with units on all helper functions.
 - Hands-on notebooks: worked example first, then `# YOUR CODE HERE` cells
-  with expected-output hints and light asserts; stretch goals at the end.
+  with expected-output hints and graceful self-check cells; sample solutions
+  at the bottom of each notebook ("no peeking during the session").
 - Plots: labeled axes with units, `figsize=(6,4)`, viridis/cividis.
 - Citations: `[Author Year]` inline, resolved in `references.bib`
   (arXiv version where one exists). Local PDFs live in the `.gitignore`d
