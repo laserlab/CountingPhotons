@@ -1,0 +1,10 @@
+# CountingPhotons — ICTP-SAIFR São Paulo 2026
+# Runs on Python 3.12 (GitHub Codespaces devcontainer) and Google Colab.
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+qutip>=5.0            # photon statistics, correlation functions
+perceval-quandela>=0.12   # linear-optical circuits: HOM, heralded Fock states
+jupyter>=1.0
+ipywidgets>=8.0       # interactive sliders in the hands-on notebooks
+pandas>=2.0           # time-tag data handling in Lecture 4
