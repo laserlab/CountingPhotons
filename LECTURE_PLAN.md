@@ -131,7 +131,10 @@ vacuum; negative-binomial multimode washout; three click streams.
   teaser; quantum-dot state of the art.
 - 53–58 · Detection: SPAD/SNSPD/TES table; efficiency, dark counts,
   afterpulsing, jitter; **simulated TES pulse-height spectrum** — photon
-  counting as calorimetry.
+  counting as calorimetry; **from clicks to P(n)**: click-detector POVM
+  (one SPAD can only see "≥1"), multiplexed quasi-PNR [Achilles2003] with
+  the P(k|n) formula and a simulated C(k) figure — loss and saturation
+  distort but don't destroy the fingerprints, and the distortion inverts.
 - 58–60 · Bridge: "you get three mystery click streams after the break."
 
 ---
@@ -156,6 +159,9 @@ vacuum; negative-binomial multimode washout; three click streams.
     with the analytic background model
   - E4: fit τ_c and τ_r with Poisson error bars (`curve_fit`); why the
     antibunching recovery constant is NOT the cycle duration
+  - Stretch: **reconstruct P(n) from click statistics** — simulate an
+    8-bin multiplexed detector, build the P(k|n) matrix, invert with
+    `nnls`; watch the inversion fail gracefully at η = 0.3
 - 40–50 · Cross-check in QuTiP: operator g⁽²⁾(0) vs time-tag estimates.
 - 50–60 · First mandatory submission: push to `submissions/<username>/`
   (walkthrough on screen).
