@@ -194,7 +194,11 @@ datasets; students may re-generate with different parameters.
   - E2: the HOM dip via source indistinguishability; Gaussian delay mapping;
     visibility
   - E3: two-photon interference has no phase (wiggle test) — contrast with
-    the MZI fringe
+    the MZI fringe; **interlude**: number–phase complementarity — why
+    photon-counting experiments need no phase stabilization (stability
+    table: MZI vs HBT vs HOM vs homodyne), and the visibility fine print
+    (V = indistinguishability, V > 1/2 as the quantum certificate,
+    raw vs corrected)
   - E4: NOON state in the MZI — coincidence fringe at 2φ, super-resolution;
     link back to LIGO squeezing
 - 52–60 · Wrap-up: HOM 1987 as sub-picosecond metrology [Hong1987]; dip
