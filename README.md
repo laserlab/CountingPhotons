@@ -86,3 +86,7 @@ Dual-licensed, following standard open-courseware practice:
 
 Third-party photographs in `figures/` retain their own licenses, listed in
 [figures/FIGURES_CREDITS.md](figures/FIGURES_CREDITS.md).
+
+**Citing:** if you build on these materials in teaching or research, please
+cite this repository (see [CITATION.cff](CITATION.cff) — GitHub renders it
+as a "Cite this repository" button in the sidebar).
