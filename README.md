@@ -77,4 +77,12 @@ want the PDFs locally, put them in a `references/` folder — it is
 
 ## License
 
-Content is licensed [CC BY 4.0](LICENSE).
+Dual-licensed, following standard open-courseware practice:
+
+- **Lecture content** — prose, the lecture plan, and course-generated
+  figures: [CC BY 4.0](LICENSE)
+- **Code** — `.py` files, notebook code cells, and configuration:
+  [MIT](LICENSE-CODE)
+
+Third-party photographs in `figures/` retain their own licenses, listed in
+[figures/FIGURES_CREDITS.md](figures/FIGURES_CREDITS.md).
