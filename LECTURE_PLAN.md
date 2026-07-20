@@ -111,9 +111,15 @@ The same notebook is the students' self-paced practice material afterwards.
   - E5: laser near threshold as coherent/thermal mixture — Q(p), Arecchi
   - E5 addendum: ASE = thermal light over M modes, Q = n̄/M — why a fiber
     amplifier's light passes for Poissonian until filtered
-- 45–57 · Stretch: binomial-thinning loss model on |4⟩, Q(η) = −η;
+- 45–52 · Stretch: binomial-thinning loss model on |4⟩, Q(η) = −η;
   discussion: why loss "classicalizes".
-- 57–60 · Announce the setup notebook 00: tonight, ~20 min, the week's only
+- 52–58 · **Case study: three quantum rulers** — squeezing (prefactor,
+  robust, deployed [Tse2019, Lough2021, Ganapathy2023]), number states
+  (Heisenberg scaling, voided by loss [HollandBurnett1993, Afek2010,
+  Demkowicz2012]), HOM visibility (change the observable, attosecond
+  delays with no phase stabilization [Lyons2018]); the pick-your-
+  failure-mode decision table.
+- 58–60 · Announce the setup notebook 00: tonight, ~20 min, the week's only
   evening task — needed for tomorrow's hands-on sessions.
 
 ---
