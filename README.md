@@ -1,5 +1,11 @@
 # Counting Photons
 
+> [!WARNING]
+> **Work in progress.** These materials are being actively revised and will
+> keep changing until the lectures begin (July 27, 2026). Feel free to look
+> around — but expect things to move, and hold off on forking until the
+> school starts.
+
 **Quantum Light, Fock States, and Hands-on Photonic Quantum Computing**
 
 Lecture materials by [Tim Thomay](https://github.com/laserlab) for the
