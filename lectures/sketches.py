@@ -304,3 +304,46 @@ def spdc_heralding():
     ax.set_ylim(0, 3.7)
     plt.tight_layout()
     plt.show()
+
+
+def ligo_noise_budget():
+    """Schematic LIGO noise budget: who limits you at which frequency."""
+    f = np.logspace(0.7, 3.5, 400)          # 5 Hz .. ~3 kHz
+
+    seismic = 3e2 * (f / 10.0) ** -8        # the low-frequency wall
+    thermal = 1.2 * (f / 100.0) ** -0.9     # suspension + coating Brownian
+    rad_press = 2.0 * (f / 30.0) ** -2      # quantum back-action (amplitude quad.)
+    shot = 0.35 * np.sqrt(1 + (f / 400.0) ** 2)   # shot noise (phase quad.)
+    quantum = np.sqrt(rad_press ** 2 + shot ** 2)
+    sql = 1.35 * (f / 55.0) ** -1           # standard quantum limit envelope
+    total = np.sqrt(seismic ** 2 + thermal ** 2 + quantum ** 2)
+
+    fig, ax = plt.subplots(figsize=(8, 4.8))
+    ax.loglog(f, seismic, color="#8c6d31", lw=1.6, label="seismic wall")
+    ax.loglog(f, thermal, color="#7b3fb3", lw=1.6, label="thermal (mirrors, fibers)")
+    ax.loglog(f, rad_press, color=HOT, lw=1.6, ls="--",
+              label="quantum: radiation pressure")
+    ax.loglog(f, shot, color=ACCENT, lw=1.6, ls="--", label="quantum: shot noise")
+    ax.loglog(f, sql, color=INK, lw=1.2, ls=":", label="standard quantum limit")
+    ax.loglog(f, total, color="k", lw=2.6, alpha=0.75, label="total")
+
+    # what squeezing does: press the shot-noise shoulder down
+    ax.annotate("", xy=(1500, 0.55 * np.interp(1500, f, shot)),
+                xytext=(1500, np.interp(1500, f, shot)),
+                arrowprops=dict(arrowstyle="-|>", color=GOOD, lw=2.2))
+    ax.text(1600, 0.42, "squeezed vacuum\npresses this down", color=GOOD,
+            fontsize=9)
+
+    ax.text(5.8, 0.16, "ground shakes:\nno laser can help", fontsize=8.5,
+            color="#8c6d31")
+    ax.text(60, 0.135, "same vacuum, two faces: amplitude quadrature pushes mirrors,\n"
+            "phase quadrature blurs the fringe", fontsize=8.5, color=INK)
+
+    ax.set_xlabel("frequency [Hz]")
+    ax.set_ylabel("strain noise  [arb. units]")
+    ax.set_title("Schematic interferometer noise budget (not to scale — "
+                 "real ones: [Tse2019])")
+    ax.set_ylim(0.08, 3e2)
+    ax.legend(fontsize=8.5, loc="upper right", ncols=2)
+    plt.tight_layout()
+    plt.show()
