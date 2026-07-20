@@ -151,7 +151,9 @@ The same notebook is the students' self-paced practice material afterwards.
 - 27–35 · Shapes in time: bunching decay, antibunching recovery; **driven
   two-level atom: the dip rings at the Rabi frequency** — dip shape as free
   spectroscopy; open-systems dictionary (the dip = optical Bloch/Lindblad
-  dynamics after a quantum jump); **one emitter → N emitters**:
+  dynamics after a quantum jump); **pulsed excitation**: the correlation
+  comb, g⁽²⁾[0] as a central-to-side peak area ratio (bin-width immune),
+  blinking envelopes on the side peaks; **one emitter → N emitters**:
   g⁽²⁾(0) = 2(1−1/N) + g⁽²⁾₁(0)/N interpolates antibunching → chaotic light,
   with the independence caveat as the hand-off to the cooperative-emission
   lectures.
