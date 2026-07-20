@@ -13,8 +13,8 @@ Tuesday 10:30, after students do the 20-minute setup notebook on Monday
 evening (the only evening task of the week). Wednesday is a single 2 h
 simulation lab. All materials are Jupyter notebooks that run in GitHub
 Codespaces (preferred) or Google Colab. Every exercise doubles as take-home
-material: submissions have **no deadline** and are reviewed after the
-school.
+material with sample solutions included; there are **no submissions and no
+homework**.
 
 ---
 
@@ -31,8 +31,7 @@ basics.
 - Create a GitHub account, fork `CountingPhotons`, launch a Codespace
 - Run a test cell that imports QuTiP and Perceval and prints a success banner
 - The Colab fallback path, step by step
-- How work will be submitted (fork → `submissions/<username>/` → push);
-  the one git workflow diagram they need
+- (Optional) saving your work: commit + push to your own fork
 - Troubleshooting section (kernel not found, Codespace build fails, etc.)
 
 ---
@@ -194,8 +193,8 @@ The same notebook is the students' self-paced practice material afterwards.
     8-bin multiplexed detector, build the P(k|n) matrix, invert with
     `nnls`; watch the inversion fail gracefully at η = 0.3
 - 40–50 · Cross-check in QuTiP: operator g⁽²⁾(0) vs time-tag estimates.
-- 50–60 · Live walkthrough of the submission flow (2 min, on screen);
-  finishing exercises + submitting = take-home, no deadline.
+- 50–60 · Verdict-table discussion prep + buffer; remaining exercises
+  are optional take-home material.
 
 **Provided:** `data/make_timetags.py` (seeded, committed) generates the
 datasets; students may re-generate with different parameters.
@@ -266,7 +265,7 @@ datasets; students may re-generate with different parameters.
   indistinguishable vs distinguishable output distributions
   ("distinguishability is the off-switch").
 - 56–60 · Wrap-up: the three-day toolbox table; reading pointers; final
-  submission push; FOM winners announced at the discussion session.
+  questions; FOM winners announced at the discussion session.
 
 ---
 

@@ -60,15 +60,6 @@ pip install -r requirements/requirements.txt
 jupyter lab
 ```
 
-## Submitting your work
-
-See [submissions/README.md](submissions/README.md) — short version: work in
-your fork, copy the notebook to `submissions/<your-github-username>/`, commit,
-push. Opening a pull request back to this repo is optional but encouraged.
-**There is no deadline** — the school week is full, and the exercises are
-designed as take-home material; pull requests are welcome and reviewed long
-after the school ends.
-
 ## References
 
 All papers cited in the lectures are collected in
