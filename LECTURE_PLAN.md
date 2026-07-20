@@ -256,7 +256,10 @@ datasets; students may re-generate with different parameters.
 - 0–8 · From lecture 1's squeezed vacuum to the two-mode squeezed vacuum:
   Σ λⁿ|n,n⟩ in Perceval; pair correlation sanity check.
 - 8–14 · E0 (warm-up): the signal marginal is thermal — numerically verify
-  Bose–Einstein + g⁽²⁾ = 2 (Tuesday's quiz, closed).
+  Bose–Einstein + g⁽²⁾ = 2 (Tuesday's quiz, closed); aside: black hole vs
+  one arm of SPDC — same math exactly, distinguishable only by the
+  T_eff(ω) spectrum test (one temperature vs phase matching), partner
+  correlations (Steinhauer's analog horizon), or Page-curve patience.
 - 14–22 · Worked: ideal PNR herald → perfect |1⟩; why it's too good to be
   true (idler loss, click detectors).
 - 22–24 · Loss = beamsplitter to an unwatched mode; lossy herald worked
