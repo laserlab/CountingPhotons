@@ -139,7 +139,10 @@ The same notebook is the students' self-paced practice material afterwards.
 - 5–15 · **History: the 1956 HBT scandal** — radio-astronomy origins, the
   tabletop experiment, Brannen & Ferguson's failed replication ("major
   revision of quantum mechanics"), Purcell's resolution; aftermath timeline
-  (Narrabri → Glauber 1963 → Kimble 1977 → Grangier 1986 → today).
+  (Narrabri → Glauber 1963 → Kimble 1977 → Grangier 1986 → today);
+  the degeneracy parameter — photons per mode explain the radio-yawn /
+  optical-scandal asymmetry, Caves' half-photon amplifier theorem, and
+  the circuit-QED loophole (microwave quantum optics at 10 mK).
 - 15–27 · g⁽²⁾(τ): definition, normal ordering; two-line Cauchy–Schwarz
   proof of g⁽²⁾ ≥ 1; quantum values 2 / 1 / 1−1/n; the 1/2 single-photon
   certificate; g⁽²⁾ = 1 + Q/n̄ and why faint-light physics measures g⁽²⁾
@@ -259,7 +262,11 @@ datasets; students may re-generate with different parameters.
   Bose–Einstein + g⁽²⁾ = 2 (Tuesday's quiz, closed); aside: black hole vs
   one arm of SPDC — same math exactly, distinguishable only by the
   T_eff(ω) spectrum test (one temperature vs phase matching), partner
-  correlations (Steinhauer's analog horizon), or Page-curve patience.
+  correlations (Steinhauer's analog horizon), or Page-curve patience;
+  coda: a star passes the T_eff test (three mechanisms, one fingerprint)
+  and HBT cannot size a black hole — λ_peak ≈ 28 r_s at every mass makes
+  it sub-wavelength and single-mode; no-hair means the spectrum already
+  contains everything.
 - 14–22 · Worked: ideal PNR herald → perfect |1⟩; why it's too good to be
   true (idler loss, click detectors).
 - 22–24 · Loss = beamsplitter to an unwatched mode; lossy herald worked
