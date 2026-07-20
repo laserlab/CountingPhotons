@@ -347,3 +347,136 @@ def ligo_noise_budget():
     ax.legend(fontsize=8.5, loc="upper right", ncols=2)
     plt.tight_layout()
     plt.show()
+
+
+def single_photon_bs():
+    """One photon on a beamsplitter: the quantum coin (Grangier 1986)."""
+    fig, ax = _canvas(8.0, 3.6)
+    _beam(ax, 0.3, 1.2, 2.15, 1.2)
+    _photon(ax, 1.1, 1.2, color=ACCENT)
+    _beamsplitter(ax, 2.4, 1.2, label="50:50")
+    _beam(ax, 2.65, 1.2, 4.4, 1.2, color=ACCENT, ls="--")
+    _detector(ax, 4.7, 1.2, angle=180, label="D1")
+    _beam(ax, 2.4, 1.45, 2.4, 2.9, color=ACCENT, ls="--")
+    _detector(ax, 2.4, 3.2, angle=270, label="D2")
+    ax.text(3.5, 1.45, "$P = 1/2$", fontsize=10, color=ACCENT)
+    ax.text(2.55, 2.3, "$P = 1/2$", fontsize=10, color=ACCENT)
+    # coincidence unit showing zero
+    ax.add_patch(Rectangle((5.4, 2.4), 1.9, 0.9, facecolor="#eee6f5",
+                           edgecolor=INK, lw=1.5))
+    ax.text(6.35, 3.05, "coincidences", ha="center", fontsize=9, color=INK)
+    ax.text(6.35, 2.7, "0  — never both", ha="center", fontsize=10,
+            color=HOT)
+    ax.plot([4.95, 5.4], [1.2, 2.6], color=INK, lw=1.1, ls=":")
+    ax.plot([2.4, 5.4], [3.35, 3.1], color=INK, lw=1.1, ls=":")
+    ax.text(0.3, 0.35,
+            "each run: ONE click, D1 or D2, chosen at random — a quantum "
+            "coin.\nNever both: a single photon does not split "
+            "(Grangier–Roger–Aspect 1986).",
+            fontsize=9.5, color=INK)
+    ax.set_xlim(0, 8.0)
+    ax.set_ylim(0, 3.7)
+    plt.tight_layout()
+    plt.show()
+
+
+def hom_dip_setup():
+    """The physical HOM experiment: pair source, delay stage, BS, dip."""
+    fig, ax = _canvas(9.6, 4.4)
+    # pump + crystal
+    _beam(ax, 0.15, 2.2, 1.0, 2.2, color="#7b3fb3")
+    ax.add_patch(Polygon([(1.1, 1.85), (1.95, 1.85), (2.15, 2.55),
+                          (1.3, 2.55)], closed=True, facecolor="#d9f2ee",
+                         edgecolor=INK, lw=1.5))
+    ax.text(1.62, 2.2, r"$\chi^{(2)}$", ha="center", va="center",
+            fontsize=11)
+    # signal path (upper): crystal -> mirror -> down to BS
+    _beam(ax, 2.05, 2.5, 4.3, 3.4, color=HOT, arrow=False)
+    ax.plot([4.18, 4.62], [3.62, 3.28], color=INK, lw=3.5,
+            solid_capstyle="round")            # mirror
+    _beam(ax, 4.45, 3.35, 5.75, 2.45, color=HOT)
+    _photon(ax, 3.2, 2.96, color=HOT)
+    # idler path (lower) through the delay stage
+    _beam(ax, 2.05, 1.9, 3.35, 1.35, color=ACCENT, arrow=False)
+    ax.add_patch(Rectangle((3.4, 0.95), 1.15, 0.75, facecolor="#fbe8c9",
+                           edgecolor=INK, lw=1.5))
+    ax.text(3.97, 1.32, "delay", ha="center", va="center", fontsize=9)
+    ax.annotate("", xy=(4.75, 0.72), xytext=(3.2, 0.72),
+                arrowprops=dict(arrowstyle="<|-|>", color=INK, lw=1.3))
+    ax.text(3.97, 0.45, r"$\pm\,\delta\tau$   (16 µm of travel = 100 fs!)",
+            ha="center", fontsize=9, color=INK)
+    _beam(ax, 4.55, 1.35, 5.75, 1.95, color=ACCENT)
+    _photon(ax, 5.0, 1.6, color=ACCENT)
+    # beamsplitter + detectors + coincidence
+    _beamsplitter(ax, 6.0, 2.2, label="50:50")
+    _beam(ax, 6.25, 2.2, 7.35, 2.2, color=INK)
+    _detector(ax, 7.65, 2.2, angle=180, label="D1")
+    _beam(ax, 6.0, 2.45, 6.0, 3.5, color=INK)
+    _detector(ax, 6.0, 3.8, angle=270, label="D2")
+    ax.add_patch(Rectangle((7.4, 3.15), 2.0, 1.15, facecolor="#eee6f5",
+                           edgecolor=INK, lw=1.5))
+    ax.text(8.4, 4.08, "coincidences", ha="center", fontsize=9, color=INK)
+    # dip inset
+    t = np.linspace(-1, 1, 80)
+    ax.plot(7.55 + (t + 1) * 0.85, 3.45 + 0.5 * (1 - np.exp(-(t / 0.3) ** 2)),
+            color=GOOD, lw=1.8)
+    ax.text(8.4, 3.38, r"vs $\delta\tau$", ha="center", fontsize=8,
+            color=GOOD, va="top")
+    ax.plot([7.9, 7.6], [2.2, 3.35], color=INK, lw=1.1, ls=":")
+    ax.plot([6.0, 7.4], [3.85, 3.9], color=INK, lw=1.1, ls=":")
+    ax.text(0.15, 4.15, "scan the delay; when the wavepackets overlap\n"
+            "at the beamsplitter, coincidences vanish: the HOM dip",
+            fontsize=9.5, color=INK, va="top")
+    ax.set_xlim(0, 9.8)
+    ax.set_ylim(0.2, 4.4)
+    plt.tight_layout()
+    plt.show()
+
+
+def noon_mzi():
+    """The NOON interferometer: HOM makes the state, phase counts double."""
+    fig, ax = _canvas(9.2, 3.9)
+    _beam(ax, 0.2, 0.85, 1.5, 0.85)
+    _photon(ax, 0.8, 0.85, color=ACCENT)
+    _beam(ax, 1.75, -0.05, 1.75, 0.55, color=HOT)
+    _photon(ax, 1.75, 0.15, color=HOT)
+    _beamsplitter(ax, 1.75, 0.85, label="")
+    ax.text(1.15, 0.52, "BS$_1$", fontsize=10, color=INK)
+    for xm in (1.75, 5.9):
+        ax.plot([xm - 0.22, xm + 0.22], [2.62, 2.18], color=INK, lw=3.5,
+                solid_capstyle="round", zorder=4)
+    _beam(ax, 1.75, 1.1, 1.75, 2.4, color="#7b3fb3")
+    _beam(ax, 1.75, 2.4, 5.9, 2.4, color="#7b3fb3")
+    _beam(ax, 5.9, 2.4, 5.9, 1.1, color="#7b3fb3")
+    _beam(ax, 2.0, 0.85, 5.65, 0.85, color="#7b3fb3")
+    _beamsplitter(ax, 5.9, 0.85, label="BS$_2$")
+    _beam(ax, 6.15, 0.85, 7.2, 0.85, color=INK)
+    _detector(ax, 7.5, 0.85, angle=180, label="")
+    _beam(ax, 5.9, 0.6, 5.9, -0.3, color=INK)
+    _detector(ax, 5.9, -0.6, angle=90, label="")
+    # phase element
+    ax.add_patch(Rectangle((3.5, 2.15), 0.6, 0.5, facecolor="#fbe8c9",
+                           edgecolor=INK, lw=1.5, zorder=4))
+    ax.text(3.8, 2.4, r"$\varphi$", ha="center", va="center", fontsize=13,
+            zorder=5)
+    # state annotations
+    ax.text(2.35, 1.55, r"HOM at BS$_1$ makes the NOON state:", fontsize=10,
+            color="#7b3fb3")
+    ax.text(2.35, 1.22,
+            r"$\left(|2,0\rangle - |0,2\rangle\right)/\sqrt{2}$",
+            fontsize=12, color="#7b3fb3")
+    ax.text(2.0, 3.0, r"$|2,0\rangle \to e^{i2\varphi}\,|2,0\rangle$: the pair pays the phase twice", fontsize=10, color=INK)
+    # inset: cos(2phi) fringe vs single-photon fringe
+    ax.add_patch(Rectangle((7.15, 1.8), 2.0, 1.5, facecolor="white",
+                           edgecolor=INK, lw=1.2))
+    ph = np.linspace(0, 2 * np.pi, 120)
+    ax.plot(7.25 + ph / (2 * np.pi) * 1.8, 2.55 + 0.6 * 0.5 * np.cos(2 * ph),
+            color="tab:purple", lw=1.8)
+    ax.plot(7.25 + ph / (2 * np.pi) * 1.8, 2.55 + 0.6 * 0.5 * np.cos(ph),
+            color="gray", lw=1.0, ls="--")
+    ax.text(8.15, 1.92, r"coinc. $\propto \cos 2\varphi$", ha="center",
+            fontsize=8.5, color="tab:purple")
+    ax.set_xlim(0, 9.4)
+    ax.set_ylim(-1.0, 3.4)
+    plt.tight_layout()
+    plt.show()
