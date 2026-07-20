@@ -62,14 +62,15 @@ basics.
   phase-space triptych (Wigner functions, negativity as non-classicality).
 - 30–38 · Variance and Mandel Q; Einstein's 1909 fluctuation formula
   (wave + particle terms); classical bound Q ≥ 0.
-- 38–48 · Shot noise in the real world: SNR = √N̄ with worked numbers
-  (night photos, laser pointer, single-molecule fluorescence); **LIGO case
-  study**: Δφ = 1/√N̄, why 200 kW; Caves 1981 — vacuum enters the dark
-  port; squeezed vacuum injection (running since 2019); squeezed-vacuum
-  Wigner function and its even-photon-number P(n) → bridge to SPDC (Wed).
-- 48–55 · Multimode detection: negative binomial, Q = n̄/M — why daylight
-  hides Bose–Einstein statistics; click-stream preview of Tuesday.
-- 55–60 · Check-your-understanding (7 questions) + buffer.
+- 38–50 · Shot noise: definition (Poisson, Schottky), real-world numbers,
+  the 22-decade scaling figure; **LIGO case study**: Δφ = 1/√N̄, why
+  200 kW; Caves 1981 — vacuum enters the dark port; schematic noise
+  budget (two quadratures of the same vacuum, SQL, frequency-dependent
+  squeezing); squeezed-vacuum Wigner + even-photon P(n) → bridge to SPDC.
+  Teaser: three itching questions handed to the afternoon demo.
+- 50–55 · Click streams; where the states live in the lab (incl. black
+  holes as the only exactly thermal source).
+- 55–60 · Check-your-understanding (6 questions) + buffer.
 
 **Key figures (all generated in-notebook):** P(n) comparison at n̄ = 4;
 P(n) across three brightness regimes; Wigner triptych; variance vs mean;
@@ -101,6 +102,12 @@ The same notebook is the students' self-paced practice material afterwards.
   - E3: sample 10 000 clicks, estimate Q from data, bootstrap error bar;
     when is Q < 0 certified at 95% confidence?
   - E4: Wigner functions of five states — which witness fires for which?
+  - Demo (from L1 overflow): "a Fock state is squeezed, right?" —
+    quadrature-noise bars, |4⟩ vs thermal n̄=4 identical second moments,
+    witness table; "why doesn't LIGO use Fock states?" — |0⟩/|1⟩/|2⟩
+    Wigner triptych, phase vs number certainty, Heisenberg limit vs loss
+  - Demo: multimode washout — negative binomial, Q = n̄/M, why daylight
+    looks Poissonian (+ black-hole aside); feeds directly into:
   - E5: laser near threshold as coherent/thermal mixture — Q(p), Arecchi
   - E5 addendum: ASE = thermal light over M modes, Q = n̄/M — why a fiber
     amplifier's light passes for Poissonian until filtered
