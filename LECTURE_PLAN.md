@@ -7,17 +7,26 @@ ICTP-SAIFR school, IFT–UNESP São Paulo · July 27–29, 2026 · Tim Thomay
 Basic programming skills are assumed; all code is heavily commented and every
 hands-on notebook starts from a worked example before asking for student code.
 
-**Format:** 6 × 1 h. Each day pairs a lecture with a hands-on session;
-Wednesday is a single 2 h simulation lab. All materials are Jupyter notebooks
-that run in GitHub Codespaces (preferred) or Google Colab.
+**Format:** 6 × 1 h. Monday is a pure lecture day (the 14:00 hour is a
+live-coding demo — no student laptops needed); interactive work starts
+Tuesday 10:30, after students do the 20-minute setup notebook on Monday
+evening (the only evening task of the week). Wednesday is a single 2 h
+simulation lab. All materials are Jupyter notebooks that run in GitHub
+Codespaces (preferred) or Google Colab. Every exercise doubles as take-home
+material: submissions have **no deadline** and are reviewed after the
+school.
 
 ---
 
-## 0 — Setup (at home, before the school, ~20 min)
+## 0 — Setup (standalone, ~20 min; announced during Monday's lectures)
 
 `lectures/00_Setup_GitHub_Codespaces.ipynb`
 
-**Goal:** every student arrives Monday with a working environment.
+**Goal:** every student has a working environment by Tuesday 10:30 (the
+first interactive session). Announced at the end of both Monday lectures;
+done Monday evening — the only evening task of the week. Also points
+students to PHY386 (github.com/ubsuny/PHY386) for self-paced Python/Jupyter
+basics.
 
 - Create a GitHub account, fork `CountingPhotons`, launch a Codespace
 - Run a test cell that imports QuTiP and Perceval and prints a success banner
@@ -69,7 +78,7 @@ vacuum; negative-binomial multimode washout; three click streams.
 
 ---
 
-## 2 — Hands-on: Simulating Photon Statistics (hands-on, Mon 14:00)
+## 2 — Simulating Photon Statistics (lecture with live demo, Mon 14:00)
 
 `lectures/02_HandsOn_SimulatingPhotonStatistics.ipynb`
 
@@ -81,19 +90,24 @@ vacuum; negative-binomial multimode washout; three click streams.
 4. plot Wigner functions and compare non-classicality witnesses.
 
 **Timing (60 min):**
-- 0–10 · Everyone running: Codespace check, fork check (00 notebook is the
-  reference). Helpers circulate.
-- 10–18 · Worked example: `coherent()`, `thermal_dm()`, `fock()`; P(n) from
+Format: live coding on screen, students predict outcomes — no laptops.
+The same notebook is the students' self-paced practice material afterwards.
+
+- 0–8 · Worked example: `coherent()`, `thermal_dm()`, `fock()`; P(n) from
   the density-matrix diagonal.
-- 18–45 · Exercises (in pairs):
+- 8–45 · Exercises as demos (audience predicts before each run):
   - E1: reproduce the equal-n̄ fingerprint figure
   - E2: `mandel_Q` function + self-checks
   - E3: sample 10 000 clicks, estimate Q from data, bootstrap error bar;
     when is Q < 0 certified at 95% confidence?
   - E4: Wigner functions of five states — which witness fires for which?
   - E5: laser near threshold as coherent/thermal mixture — Q(p), Arecchi
-- 45–60 · Stretch: binomial-thinning loss model on |4⟩, Q(η) = −η;
-  discussion: why loss "classicalizes"; optional first submission.
+  - E5 addendum: ASE = thermal light over M modes, Q = n̄/M — why a fiber
+    amplifier's light passes for Poissonian until filtered
+- 45–57 · Stretch: binomial-thinning loss model on |4⟩, Q(η) = −η;
+  discussion: why loss "classicalizes".
+- 57–60 · Announce the setup notebook 00: tonight, ~20 min, the week's only
+  evening task — needed for tomorrow's hands-on sessions.
 
 ---
 
@@ -167,8 +181,8 @@ vacuum; negative-binomial multimode washout; three click streams.
     8-bin multiplexed detector, build the P(k|n) matrix, invert with
     `nnls`; watch the inversion fail gracefully at η = 0.3
 - 40–50 · Cross-check in QuTiP: operator g⁽²⁾(0) vs time-tag estimates.
-- 50–60 · First mandatory submission: push to `submissions/<username>/`
-  (walkthrough on screen).
+- 50–60 · Live walkthrough of the submission flow (2 min, on screen);
+  finishing exercises + submitting = take-home, no deadline.
 
 **Provided:** `data/make_timetags.py` (seeded, committed) generates the
 datasets; students may re-generate with different parameters.

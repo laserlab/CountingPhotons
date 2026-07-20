@@ -15,3 +15,7 @@
    `submissions/<your-github-username>/` path.)
 5. *Optional:* open a **pull request** from your fork back to this repository
    so we can look at your work together.
+
+**No deadline.** The school days are packed — these exercises are meant to
+stay useful as self-paced material. Submissions arriving days or weeks after
+the school are welcome and will be reviewed.

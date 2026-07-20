@@ -19,9 +19,9 @@ ICTP-SAIFR school, IFT–UNESP São Paulo, July 27–29, 2026.
 
 | # | When | Notebook | Format |
 |---|------|----------|--------|
-| 0 | before the school | [00_Setup_GitHub_Codespaces](lectures/00_Setup_GitHub_Codespaces.ipynb) | do at home (~20 min) |
+| 0 | announced Monday | [00_Setup_GitHub_Codespaces](lectures/00_Setup_GitHub_Codespaces.ipynb) | standalone setup, do Monday evening (~20 min) |
 | 1 | Mon Jul 27, 11:30 | [01_QuantumLight_PhotonStatistics](lectures/01_QuantumLight_PhotonStatistics.ipynb) | lecture |
-| 2 | Mon Jul 27, 14:00 | [02_HandsOn_SimulatingPhotonStatistics](lectures/02_HandsOn_SimulatingPhotonStatistics.ipynb) | hands-on |
+| 2 | Mon Jul 27, 14:00 | [02_HandsOn_SimulatingPhotonStatistics](lectures/02_HandsOn_SimulatingPhotonStatistics.ipynb) | lecture · live demo |
 | 3 | Tue Jul 28, 9:00 | [03_Correlations_Generation_Detection](lectures/03_Correlations_Generation_Detection.ipynb) | lecture |
 | 4 | Tue Jul 28, 10:30 | [04_HandsOn_g2_HBT](lectures/04_HandsOn_g2_HBT.ipynb) | hands-on |
 | 5 | Wed Jul 29, 10:30 | [05_Lab_HOM_Interference](lectures/05_Lab_HOM_Interference.ipynb) | lab |
@@ -59,6 +59,9 @@ jupyter lab
 See [submissions/README.md](submissions/README.md) — short version: work in
 your fork, copy the notebook to `submissions/<your-github-username>/`, commit,
 push. Opening a pull request back to this repo is optional but encouraged.
+**There is no deadline** — the school week is full, and the exercises are
+designed as take-home material; pull requests are welcome and reviewed long
+after the school ends.
 
 ## References
 
@@ -71,6 +74,7 @@ want the PDFs locally, put them in a `references/` folder — it is
 
 - [Perceval documentation](https://perceval.quandela.net/docs/) — the photonic QC framework used in Lectures 5–6
 - [QuTiP documentation](https://qutip.readthedocs.io/) — used in Lectures 2 and 4
+- [PHY386 — Computational Methods for Physicists](https://github.com/ubsuny/PHY386) — Tim's UB course; self-paced Python/Jupyter/plotting basics if you want a gentler computational on-ramp
 - [GitHub docs: forking](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 - [Getting started with Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart)
 
