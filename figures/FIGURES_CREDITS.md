@@ -15,6 +15,7 @@ repository license (CC BY 4.0).
 | `hanbury_brown.jpg` | Robert Hanbury Brown | International Astronomical Union | CC BY 4.0 |
 | `ligo_hanford.jpg` | LIGO Hanford Observatory, aerial view | LIGO Laboratory (Caltech/MIT) | Public domain (US Government) |
 | `dye_laser.jpg` | CW single-frequency ring dye laser | Sergey100, Laser Systems Laboratory, Novosibirsk State University | Public domain (released by author) |
+| `hbt_searchlights.jpg` | Museum model of the 1956 HBT stellar interferometer (searchlight mirrors), Deutsches Museum | Physikaficionado, Wikimedia Commons | CC BY-SA 4.0 |
 
 Not included on purpose: no freely licensed portraits of Gilbert N. Lewis or
 G. I. Taylor exist on Wikimedia Commons (the familiar photos are fair-use
