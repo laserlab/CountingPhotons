@@ -120,7 +120,11 @@ vacuum; negative-binomial multimode washout; three click streams.
   (loss invariance!).
 - 27–35 · Shapes in time: bunching decay, antibunching recovery; **driven
   two-level atom: the dip rings at the Rabi frequency** — dip shape as free
-  spectroscopy.
+  spectroscopy; open-systems dictionary (the dip = optical Bloch/Lindblad
+  dynamics after a quantum jump); **one emitter → N emitters**:
+  g⁽²⁾(0) = 2(1−1/N) + g⁽²⁾₁(0)/N interpolates antibunching → chaotic light,
+  with the independence caveat as the hand-off to the cooperative-emission
+  lectures.
 - 35–42 · HBT in practice: geometry, accidental normalization, start–stop
   vs streaming taggers, Poisson error bars; **stellar version**: van
   Cittert–Zernike, the Sirius baseline estimate.
