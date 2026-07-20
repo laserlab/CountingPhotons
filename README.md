@@ -71,6 +71,7 @@ want the PDFs locally, put them in a `references/` folder — it is
 
 - [Perceval documentation](https://perceval.quandela.net/docs/) — the photonic QC framework used in Lectures 5–6
 - [QuTiP documentation](https://qutip.readthedocs.io/) — used in Lectures 2 and 4
+- [QuantumOptics.jl](https://qojulia.org) — the Julia sibling of QuTiP, used in Helmut Ritsch's lectures at this school; concepts transfer 1:1
 - [PHY386 — Computational Methods for Physicists](https://github.com/ubsuny/PHY386) — my UB course; self-paced Python/Jupyter/plotting basics if you want a gentler computational on-ramp
 - [GitHub docs: forking](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 - [Getting started with Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart)
