@@ -16,7 +16,12 @@ repository license (CC BY 4.0).
 | `ligo_hanford.jpg` | LIGO Hanford Observatory, aerial view | LIGO Laboratory (Caltech/MIT) | Public domain (US Government) |
 | `dye_laser.jpg` | CW single-frequency ring dye laser | Sergey100, Laser Systems Laboratory, Novosibirsk State University | Public domain (released by author) |
 | `hbt_searchlights.jpg` | Museum model of the 1956 HBT stellar interferometer (searchlight mirrors), Deutsches Museum | Physikaficionado, Wikimedia Commons | CC BY-SA 4.0 |
+| `purcell.jpg` | Edward M. Purcell at the Lindau meeting, 1962 | Landesarchiv Baden-Württemberg / Willy Pragher | CC BY 3.0 DE |
+| `aspect.jpg` | Alain Aspect, 2016 | École polytechnique Université Paris-Saclay | CC BY-SA 2.0 |
+| `michelson.jpg` | Albert A. Michelson, formal portrait | AstroLab restoration (Smithsonian original) | Public domain |
 
-Not included on purpose: no freely licensed portraits of Gilbert N. Lewis or
-G. I. Taylor exist on Wikimedia Commons (the familiar photos are fair-use
-only and cannot be redistributed in this CC BY 4.0 repository).
+Not included on purpose: no freely licensed portraits exist on Wikimedia
+Commons for Gilbert N. Lewis, G. I. Taylor, Richard Q. Twiss, Leonard
+Mandel, H. Jeff Kimble, or Philippe Grangier (verified individually; the
+familiar photos are fair-use only and cannot be redistributed in this
+CC BY 4.0 repository).

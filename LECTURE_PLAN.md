@@ -143,7 +143,9 @@ The same notebook is the students' self-paced practice material afterwards.
 - 15–27 · g⁽²⁾(τ): definition, normal ordering; two-line Cauchy–Schwarz
   proof of g⁽²⁾ ≥ 1; quantum values 2 / 1 / 1−1/n; the 1/2 single-photon
   certificate; g⁽²⁾ = 1 + Q/n̄ and why faint-light physics measures g⁽²⁾
-  (loss invariance!).
+  (loss invariance!); the 1−1/n blind spot — mode-blind counting cannot
+  tell |n⟩ from n independent photons at any order; mode-resolved
+  correlations, interference, or tomography can.
 - 27–35 · Shapes in time: bunching decay, antibunching recovery; **driven
   two-level atom: the dip rings at the Rabi frequency** — dip shape as free
   spectroscopy; open-systems dictionary (the dip = optical Bloch/Lindblad
