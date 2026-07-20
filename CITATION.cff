@@ -9,4 +9,6 @@ type: software
 repository-code: "https://github.com/laserlab/CountingPhotons"
 year: 2026
 notes: "Lecture materials for the ICTP-SAIFR school, IFT-UNESP São Paulo, July 2026"
-license: "CC-BY-4.0 (content) and MIT (code)"
+license:
+  - CC-BY-4.0
+  - MIT

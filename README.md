@@ -79,10 +79,11 @@ want the PDFs locally, put them in a `references/` folder — it is
 
 Dual-licensed, following standard open-courseware practice:
 
-- **Lecture content** — prose, the lecture plan, and course-generated
-  figures: [CC BY 4.0](LICENSE)
-- **Code** — `.py` files, notebook code cells, and configuration:
-  [MIT](LICENSE-CODE)
+- **Lecture content** © 2026 Tim Thomay — prose, the lecture plan, and
+  course-generated figures: [CC BY 4.0](LICENSE)
+- **Code** © 2026 Tim Thomay — the `.py` files (`lectures/sketches.py`,
+  `data/make_timetags.py`), notebook code cells, and configuration
+  (`.devcontainer/`, `requirements/`): [MIT](LICENSE-CODE)
 
 Third-party photographs in `figures/` retain their own licenses, listed in
 [figures/FIGURES_CREDITS.md](figures/FIGURES_CREDITS.md).
