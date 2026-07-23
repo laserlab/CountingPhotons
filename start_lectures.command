@@ -14,4 +14,4 @@ if [ ! -d .venv ]; then
 fi
 
 echo "Starting JupyterLab (close this window or press Ctrl+C to stop)..."
-exec .venv/bin/jupyter lab lectures/
+exec .venv/bin/jupyter lab --ServerApp.default_url=/lab/tree/lectures
