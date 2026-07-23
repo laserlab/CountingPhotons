@@ -18,6 +18,35 @@ homework**.
 
 ---
 
+## Presenting (lecturer notes)
+
+**Setup (fully offline-capable — verified with a disabled network stack):**
+
+```bash
+cd CountingPhotons
+source .venv/bin/activate
+jupyter lab lectures/
+```
+
+- **JupyterLab, light theme, browser full-screen.** Turn on
+  *View → Presentation Mode* (enlarges all fonts), hide the file browser
+  (Cmd+B), and set browser zoom to ~125–150% for the back row. Use the
+  *Table of Contents* sidebar to jump between sections during the hour.
+- **Figures render at retina resolution** (`%config InlineBackend
+  .figure_format = "retina"` in every setup cell) — crisp on projectors.
+- **Never "Clear All Outputs" before class**: every notebook ships fully
+  executed, so if a live cell misbehaves the correct output is already
+  on screen. Re-running a cell can only improve things.
+- **Notebook 4's full solution run takes ~4 minutes** (coincidence
+  histograms) — its outputs are pre-computed; don't Run-All live.
+- **Everything works with the network cable cut**: install cells skip
+  (packages present), data loads from `data/`, sketches import locally,
+  photos are local files, math renders via bundled MathJax. The only
+  things that need internet are the *students'* Codespaces/Colab.
+- Mirror displays (not extended) so you see exactly what the room sees.
+
+---
+
 ## 0 — Setup (standalone, ~20 min; announced during Monday's lectures)
 
 `lectures/00_Setup_GitHub_Codespaces.ipynb`
