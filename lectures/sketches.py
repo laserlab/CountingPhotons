@@ -555,3 +555,112 @@ def stellar_hbt():
     ax.set_ylim(0, 5.3)
     plt.tight_layout()
     plt.show()
+
+
+def mode_blind():
+    """|4> vs four loners: a counter sees "4" either way; each detector
+    geometry resolves one mode axis; phase-only differences escape all."""
+    fig, ax = _canvas(10.6, 6.6)
+
+    def _packet(x0, x1, y0, height, chirp=0.0, color=ACCENT):
+        """Wavepacket envelope; chirp != 0 draws the carrier inside."""
+        t = np.linspace(-1, 1, 400)
+        env = height * np.exp(-((t / 0.55) ** 2))
+        xs = x0 + (t + 1) / 2 * (x1 - x0)
+        if chirp:
+            # instantaneous frequency 5.5 + 2*chirp*t stays positive over
+            # the visible envelope, so the sweep direction is readable
+            carrier = 0.85 * env * np.sin(2 * np.pi * (5.5 * t
+                                                       + chirp * t ** 2))
+            ax.plot(xs, y0 + carrier, color=color, lw=1.2)
+        ax.plot(xs, y0 + env, color=color, lw=1.8)
+        ax.plot([x0, x1], [y0, y0], color=INK, lw=0.8)
+
+    # ---------------- left: the blind spot ----------------
+    # |4>: one envelope, four photons inside
+    _packet(0.35, 2.55, 4.35, 0.95)
+    for px in (1.05, 1.35, 1.65, 1.95):
+        ax.add_patch(Circle((px, 4.62), 0.08, facecolor=HOT, zorder=5))
+    ax.text(1.45, 5.65, r"$|4\rangle$ — four photons, one mode",
+            ha="center", fontsize=10, color=INK)
+
+    # four loners: four small envelopes, one photon each
+    for k, cx in enumerate((0.6, 1.2, 1.8, 2.4)):
+        _packet(cx - 0.27, cx + 0.27, 2.1, 0.52)
+        ax.add_patch(Circle((cx, 2.38), 0.08, facecolor=HOT, zorder=5))
+    ax.text(1.5, 3.05, "four loners — one photon each, four modes",
+            ha="center", fontsize=10, color=INK)
+
+    # both feed the same mode-blind counter
+    _beam(ax, 2.75, 4.75, 3.75, 3.75, lw=1.6)
+    _beam(ax, 2.75, 2.45, 3.75, 3.35, lw=1.6)
+    _detector(ax, 4.05, 3.55, angle=180, label="")
+    ax.text(4.05, 3.0, "counter", ha="center", fontsize=9, color=INK)
+    ax.text(4.75, 3.55, r'"4"', fontsize=16, color=INK, va="center")
+    ax.text(1.5, 1.45, r"same $P(n)=\delta_{n,4}$ — same $g^{(2)},"
+                       r" g^{(3)},\dots$ at every order",
+            ha="center", fontsize=9.5, color=HOT)
+
+    ax.plot([5.45, 5.45], [1.35, 6.1], color=INK, lw=0.8, ls=":")
+
+    # ---------------- right: the four resolving axes ----------------
+    ax.text(8.0, 6.15, "to unmask the loners, resolve their axis",
+            ha="center", fontsize=11, color=INK)
+
+    # space: SNSPD pixel array, four pixels lit
+    for i in range(4):
+        for j in range(4):
+            lit = (i, j) in ((0, 1), (1, 3), (2, 0), (3, 2))
+            ax.add_patch(Rectangle((5.8 + i * 0.34, 4.35 + j * 0.34),
+                                   0.29, 0.29, facecolor=HOT if lit
+                                   else "#e8eaed", edgecolor=INK, lw=0.7))
+    ax.text(6.45, 4.1, "space\nSNSPD array", ha="center", va="top",
+            fontsize=9, color=INK)
+
+    # time: tagger trace with four clicks
+    ax.plot([8.1, 10.2], [5.0, 5.0], color=INK, lw=1.2)
+    for tx in (8.35, 8.95, 9.35, 9.95):
+        ax.plot([tx, tx], [5.0, 5.45], color=HOT, lw=2)
+    ax.text(9.15, 4.1, "time\ntime-tagger / TES steps", ha="center",
+            va="top", fontsize=9, color=INK)
+
+    # frequency: spectrometer, four peaks
+    ax.plot([5.75, 7.15], [2.35, 2.35], color=INK, lw=1.2)
+    f = np.linspace(0, 1, 300)
+    for fx in (0.15, 0.4, 0.62, 0.85):
+        ax.plot(5.75 + f * 1.4,
+                2.35 + 0.55 * np.exp(-((f - fx) / 0.035) ** 2),
+                color=HOT, lw=1.4)
+    ax.text(6.45, 2.1, "frequency\nspectrometer / TES energy",
+            ha="center", va="top", fontsize=9, color=INK)
+
+    # polarization: four analyzer directions
+    for ang in (0, 45, 90, 135):
+        dx = 0.5 * np.cos(np.radians(ang))
+        dy = 0.5 * np.sin(np.radians(ang))
+        ax.annotate("", xy=(9.15 + dx, 2.75 + dy),
+                    xytext=(9.15 - dx, 2.75 - dy),
+                    arrowprops=dict(arrowstyle="<|-|>", color=HOT, lw=1.4))
+    ax.text(9.15, 2.1, "polarization\npolarizer", ha="center", va="top",
+            fontsize=9, color=INK)
+
+    # ---------------- bottom: the trap's trap ----------------
+    ax.plot([0.2, 10.4], [1.15, 1.15], color=INK, lw=0.8, ls=":")
+    _packet(0.5, 2.1, 0.45, 0.62, chirp=2.5, color=INK)
+    ax.text(1.3, -0.35, r"chirp $\uparrow$", ha="center", fontsize=9,
+            color=INK)
+    _packet(2.5, 4.1, 0.45, 0.62, chirp=-2.5, color=INK)
+    ax.text(3.3, -0.35, r"chirp $\downarrow$", ha="center", fontsize=9,
+            color=INK)
+    ax.text(4.55, 0.55,
+            "the trap's trap: phase-only mode labels — identical intensity\n"
+            r"in $t$ and $\omega$, invisible on every axis. Certifying"
+            " one mode\ntakes interference (HOM) or homodyne tomography.",
+            fontsize=9.5, color=GOOD, va="center", ha="left")
+
+    ax.set_xlim(0, 10.6)
+    ax.set_ylim(-0.55, 6.5)
+    ax.set_title(r"$g^{(2)}$'s blind spot: counting certifies the photon"
+                 " number, never the mode", fontsize=13)
+    plt.tight_layout()
+    plt.show()
