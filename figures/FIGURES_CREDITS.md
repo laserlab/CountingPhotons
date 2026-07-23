@@ -21,6 +21,7 @@ repository license (CC BY 4.0).
 | `michelson.jpg` | Albert A. Michelson, formal portrait | AstroLab restoration (Smithsonian original) | Public domain |
 | `vla.jpg` | Very Large Array, New Mexico, 2012 | John Fowler, Wikimedia Commons | CC BY 2.0 |
 | `ibm_q.jpg` | IBM Quantum System One, Ehningen | IBM Research (Flickr), Wikimedia Commons | CC BY 2.0 |
+| `tes_bicep2.jpg` | BICEP2 focal plane (512 transition-edge sensors) under microscope inspection | NASA/JPL-Caltech (PIA17993), Wikimedia Commons | Public domain (NASA) |
 
 Not included on purpose: no freely licensed portraits exist on Wikimedia
 Commons for Gilbert N. Lewis, G. I. Taylor, the Narrabri interferometer itself, Richard Q. Twiss, Leonard
