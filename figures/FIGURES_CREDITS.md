@@ -19,9 +19,11 @@ repository license (CC BY 4.0).
 | `purcell.jpg` | Edward M. Purcell at the Lindau meeting, 1962 | Landesarchiv Baden-Württemberg / Willy Pragher | CC BY 3.0 DE |
 | `aspect.jpg` | Alain Aspect, 2016 | École polytechnique Université Paris-Saclay | CC BY-SA 2.0 |
 | `michelson.jpg` | Albert A. Michelson, formal portrait | AstroLab restoration (Smithsonian original) | Public domain |
+| `vla.jpg` | Very Large Array, New Mexico, 2012 | John Fowler, Wikimedia Commons | CC BY 2.0 |
+| `ibm_q.jpg` | IBM Quantum System One, Ehningen | IBM Research (Flickr), Wikimedia Commons | CC BY 2.0 |
 
 Not included on purpose: no freely licensed portraits exist on Wikimedia
-Commons for Gilbert N. Lewis, G. I. Taylor, Richard Q. Twiss, Leonard
+Commons for Gilbert N. Lewis, G. I. Taylor, the Narrabri interferometer itself, Richard Q. Twiss, Leonard
 Mandel, H. Jeff Kimble, or Philippe Grangier (verified individually; the
 familiar photos are fair-use only and cannot be redistributed in this
 CC BY 4.0 repository).

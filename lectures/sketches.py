@@ -480,3 +480,78 @@ def noon_mzi():
     ax.set_ylim(-1.0, 3.4)
     plt.tight_layout()
     plt.show()
+
+
+def stellar_hbt():
+    """Stellar intensity interferometry: correlate intensities, not fields."""
+    fig, ax = _canvas(9.6, 5.2)
+
+    # the star, with (exaggerated) angular size
+    ax.add_patch(Circle((4.8, 4.55), 0.28, facecolor="#fbe8c9",
+                        edgecolor=INK, lw=1.5))
+    for ang in np.linspace(0, 2 * np.pi, 8, endpoint=False):
+        ax.plot([4.8 + 0.33 * np.cos(ang), 4.8 + 0.48 * np.cos(ang)],
+                [4.55 + 0.33 * np.sin(ang), 4.55 + 0.48 * np.sin(ang)],
+                color="#c9962e", lw=1.4)
+    ax.annotate("", xy=(4.1, 4.9), xytext=(5.5, 4.9),
+                arrowprops=dict(arrowstyle="<|-|>", color=INK, lw=1.1))
+    ax.text(4.8, 5.05, r"angular size $\theta$", ha="center", fontsize=9,
+            color=INK)
+
+    # light cones to the two telescopes
+    for xt in (2.3, 7.3):
+        ax.plot([4.55, xt - 0.35], [4.4, 1.75], color="#c9962e", lw=1.0,
+                alpha=0.65)
+        ax.plot([5.05, xt + 0.35], [4.4, 1.75], color="#c9962e", lw=1.0,
+                alpha=0.65)
+
+    # telescopes: dish + mount, detector at focus
+    for xt in (2.3, 7.3):
+        ax.add_patch(Polygon([(xt - 0.55, 1.75), (xt + 0.55, 1.75),
+                              (xt, 1.35)], closed=True,
+                             facecolor="#d9e6f2", edgecolor=INK, lw=1.5))
+        ax.plot([xt, xt], [1.35, 0.95], color=INK, lw=2.5)
+        _detector(ax, xt, 1.62, angle=90, label="")
+    ax.text(2.3, 0.72, "telescope 1", ha="center", fontsize=9, color=INK)
+    ax.text(7.3, 0.72, "telescope 2", ha="center", fontsize=9, color=INK)
+
+    # baseline
+    ax.annotate("", xy=(2.3, 0.42), xytext=(7.3, 0.42),
+                arrowprops=dict(arrowstyle="<|-|>", color=INK, lw=1.3))
+    ax.text(4.8, 0.18, "baseline $d$  (movable — no phase stability needed)",
+            ha="center", fontsize=9.5, color=INK)
+
+    # the 'flickers together' traces beside each telescope
+    t = np.linspace(0, 1, 160)
+    rng = np.random.default_rng(3)
+    base = np.convolve(rng.normal(size=220), np.ones(25) / 25,
+                       mode="same")[30:190]
+    for xt, sign in ((0.55, 1), (8.05, 1)):
+        ax.plot(xt + t * 1.15, 2.65 + 1.6 * base, color=HOT, lw=1.2)
+        ax.text(xt + 0.57, 3.35, "$I(t)$", ha="center", fontsize=9,
+                color=HOT)
+    ax.text(4.8, 2.5, "close detectors: the thermal light\n"
+            '"flickers together"', ha="center", fontsize=9.5, color=HOT)
+
+    # cables to the multiplier / correlator
+    ax.plot([2.3, 2.3, 4.45], [0.95, 0.9, 0.9], color=INK, lw=1.4)
+    ax.plot([7.3, 7.3, 5.15], [0.95, 0.9, 0.9], color=INK, lw=1.4)
+    ax.add_patch(Circle((4.8, 0.9), 0.22, facecolor="#eee6f5",
+                        edgecolor=INK, lw=1.5, zorder=4))
+    ax.text(4.8, 0.9, r"$\times$", ha="center", va="center", fontsize=13,
+            zorder=5)
+    ax.text(4.8, 1.28, r"multiply & average:  $\langle I_1 I_2\rangle$",
+            ha="center", fontsize=9, color=INK)
+
+    # inset: correlation vs baseline
+    ax.add_patch(Rectangle((0.25, 3.95), 2.3, 1.25, facecolor="white",
+                           edgecolor=INK, lw=1.2))
+    d = np.linspace(0, 1, 80)
+    ax.plot(0.4 + d * 2.0, 4.15 + 0.85 * np.exp(-(d / 0.35) ** 2),
+            color=GOOD, lw=1.8)
+    ax.text(1.4, 4.02, r"$g^{(2)}(d)-1$  dies at  $d \sim \lambda/\theta$",
+            ha="center", fontsize=8, color=GOOD, va="top")
+    ax.set_xlim(0, 9.6)
+    ax.set_ylim(0, 5.3)
+    plt.tight_layout()
+    plt.show()
