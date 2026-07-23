@@ -59,6 +59,10 @@ pip install -r requirements/requirements.txt
 jupyter lab
 ```
 
+(On macOS, after the one-time setup you can simply double-click
+`start_lectures.command` — it launches JupyterLab from the bundled
+environment and works fully offline.)
+
 ## References
 
 All papers cited in the lectures are collected in
