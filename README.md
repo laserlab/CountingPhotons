@@ -33,7 +33,6 @@ ICTP-SAIFR school, IFT–UNESP São Paulo, July 27–29, 2026.
 | 5 | Wed Jul 29, 10:30 | [05_Lab_HOM_Interference](lectures/05_Lab_HOM_Interference.ipynb) | lab |
 | 6 | Wed Jul 29, 11:30 | [06_Lab_HeraldedFockStates](lectures/06_Lab_HeraldedFockStates.ipynb) | lab |
 
-A detailed session-by-session outline is in [LECTURE_PLAN.md](LECTURE_PLAN.md).
 
 ## Running the notebooks
 

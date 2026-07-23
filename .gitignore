@@ -6,6 +6,9 @@ __pycache__/
 venv/
 .ipynb_checkpoints/
 
+# Lecturer notes - local only, not part of the public repo
+LECTURE_PLAN.md
+
 # Local paper PDFs — kept out of the repository on purpose.
 # Get them yourself via the arXiv links in references.bib
 # (or run references_download.py if provided).
