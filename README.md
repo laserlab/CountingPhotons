@@ -41,7 +41,8 @@ ICTP-SAIFR school, IFT–UNESP São Paulo, July 27–29, 2026.
 1. Fork this repository (button top right).
 2. On *your fork*: **Code ▸ Codespaces ▸ Create codespace on main**.
 3. Wait for the container to build (~2 min, one time), open a notebook in
-   `lectures/`, select the *Python 3* kernel, run.
+   `lectures/`, select the **Python 3 (ipykernel)** kernel (`/usr/local/bin/python`,
+   not the bare `/bin/python3`), run.
 
 **Alternative: Google Colab**
 
