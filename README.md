@@ -1,7 +1,6 @@
 # Counting Photons
 
-> [!WARNING]
-> **Work in progress.** These materials are being actively revised and will
+> ⚠️ **Work in progress.** These materials are being actively revised and will
 > keep changing until the lectures begin (July 27, 2026). Feel free to look
 > around — but expect things to move, and hold off on forking until the
 > school starts.
