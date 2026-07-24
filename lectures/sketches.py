@@ -200,8 +200,12 @@ def hbt_setup():
 
 
 def hom_amplitudes():
-    """The two indistinguishable two-photon processes that cancel."""
-    fig, axes = plt.subplots(1, 2, figsize=(9.0, 3.6))
+    """The two indistinguishable two-photon processes that cancel.
+
+    Proper HOM geometry: one photon per input port (a: from the left,
+    b: from below). On the "/" diagonal, left-in reflects up and
+    bottom-in reflects right."""
+    fig, axes = plt.subplots(1, 2, figsize=(9.0, 3.9))
     for ax, (title, refl) in zip(
             axes, [("both transmitted:  amplitude $t \\cdot t$", False),
                    ("both reflected:  amplitude $r \\cdot r = (i/\\sqrt{2})^2$",
@@ -210,24 +214,28 @@ def hom_amplitudes():
         ax.axis("off")
         _beamsplitter(ax, 0, 0, size=0.7, label="")
         if not refl:
-            _beam(ax, -1.6, 0.22, 1.6, 0.22, color=ACCENT)
-            _beam(ax, -1.6, -0.22, 1.6, -0.22, color=HOT)
+            # a: left -> right (through), b: bottom -> top (through)
+            _beam(ax, -1.6, 0.12, 1.6, 0.12, color=ACCENT)
+            _beam(ax, -0.12, -1.6, -0.12, 1.6, color=HOT)
         else:
-            _beam(ax, -1.6, 0.22, -0.05, 0.22, color=ACCENT, arrow=False)
-            _beam(ax, -0.05, 0.22, -0.05, -1.5, color=ACCENT)
-            _beam(ax, -1.6, -0.22, 0.05, -0.22, color=HOT, arrow=False)
-            _beam(ax, 0.05, -0.22, 0.05, 1.5, color=HOT)
-        _photon(ax, -1.25, 0.22, color=ACCENT)
-        _photon(ax, -1.25, -0.22, color=HOT)
+            # a: left -> up, b: bottom -> right (reflections off "/")
+            _beam(ax, -1.6, 0.12, 0.12, 0.12, color=ACCENT, arrow=False)
+            _beam(ax, 0.12, 0.12, 0.12, 1.6, color=ACCENT)
+            _beam(ax, -0.12, -1.6, -0.12, -0.12, color=HOT, arrow=False)
+            _beam(ax, -0.12, -0.12, 1.6, -0.12, color=HOT)
+        _photon(ax, -1.25, 0.12, color=ACCENT)
+        _photon(ax, -0.12, -1.3, color=HOT)
+        ax.text(-1.55, 0.34, "$a$", fontsize=11, color=ACCENT)
+        ax.text(-0.45, -1.45, "$b$", fontsize=11, color=HOT)
         ax.set_title(title, fontsize=11)
         ax.set_xlim(-1.9, 1.9)
-        ax.set_ylim(-1.7, 1.7)
-    fig.text(0.5, 0.06,
-             "the two paths to a coincidence are indistinguishable "
+        ax.set_ylim(-1.8, 1.8)
+    fig.text(0.5, 0.05,
+             "same final state (one photon up, one right) two ways "
              r"$\Rightarrow$ amplitudes add:  $t^2 + r^2 = "
              r"\frac{1}{2} - \frac{1}{2} = 0$",
              ha="center", fontsize=11.5)
-    plt.subplots_adjust(bottom=0.2, top=0.9)
+    plt.subplots_adjust(bottom=0.18, top=0.9)
     plt.show()
 
 
@@ -390,12 +398,24 @@ def hom_dip_setup():
                          edgecolor=INK, lw=1.5))
     ax.text(1.62, 2.2, r"$\chi^{(2)}$", ha="center", va="center",
             fontsize=11)
-    # signal path (upper): crystal -> mirror -> down to BS
-    _beam(ax, 2.05, 2.5, 4.3, 3.4, color=HOT, arrow=False)
-    ax.plot([4.18, 4.62], [3.62, 3.28], color=INK, lw=3.5,
-            solid_capstyle="round")            # mirror
-    _beam(ax, 4.45, 3.35, 5.75, 2.45, color=HOT)
+
+    # signal path (upper): crystal -> mirror -> down to BS.  The mirror
+    # segment is computed from the law of reflection (normal along
+    # d_in - d_out), so the drawn angle is optically correct.
+    p_exit, p_mir, p_bs = np.array([2.05, 2.5]), np.array([4.4, 3.4]), \
+        np.array([5.75, 2.45])
+    d_in = (p_mir - p_exit) / np.linalg.norm(p_mir - p_exit)
+    d_out = (p_bs - p_mir) / np.linalg.norm(p_bs - p_mir)
+    n = d_in - d_out
+    n /= np.linalg.norm(n)
+    m = np.array([-n[1], n[0]]) * 0.30          # mirror line, half-length
+    _beam(ax, *p_exit, *p_mir, color=HOT, arrow=False)
+    ax.plot([p_mir[0] - m[0], p_mir[0] + m[0]],
+            [p_mir[1] - m[1], p_mir[1] + m[1]], color=INK, lw=3.5,
+            solid_capstyle="round")
+    _beam(ax, *p_mir, *p_bs, color=HOT)
     _photon(ax, 3.2, 2.96, color=HOT)
+
     # idler path (lower) through the delay stage
     _beam(ax, 2.05, 1.9, 3.35, 1.35, color=ACCENT, arrow=False)
     ax.add_patch(Rectangle((3.4, 0.95), 1.15, 0.75, facecolor="#fbe8c9",
@@ -407,6 +427,7 @@ def hom_dip_setup():
             ha="center", fontsize=9, color=INK)
     _beam(ax, 4.55, 1.35, 5.75, 1.95, color=ACCENT)
     _photon(ax, 5.0, 1.6, color=ACCENT)
+
     # beamsplitter + detectors + coincidence
     _beamsplitter(ax, 6.0, 2.2, label="50:50")
     _beam(ax, 6.25, 2.2, 7.35, 2.2, color=INK)
@@ -415,12 +436,16 @@ def hom_dip_setup():
     _detector(ax, 6.0, 3.8, angle=270, label="D2")
     ax.add_patch(Rectangle((7.4, 3.15), 2.0, 1.15, facecolor="#eee6f5",
                            edgecolor=INK, lw=1.5))
-    ax.text(8.4, 4.08, "coincidences", ha="center", fontsize=9, color=INK)
-    # dip inset
+    ax.text(8.4, 4.1, "coincidences", ha="center", fontsize=9, color=INK)
+
+    # dip inset - with an explicit zero line: the dip goes all the way down
     t = np.linspace(-1, 1, 80)
-    ax.plot(7.55 + (t + 1) * 0.85, 3.45 + 0.5 * (1 - np.exp(-(t / 0.3) ** 2)),
+    x_in = 7.55 + (t + 1) * 0.85
+    ax.plot([7.5, 9.3], [3.42, 3.42], color=INK, lw=0.8, ls="--", alpha=0.6)
+    ax.text(7.46, 3.42, "0", ha="right", va="center", fontsize=8, color=INK)
+    ax.plot(x_in, 3.42 + 0.55 * (1 - np.exp(-(t / 0.3) ** 2)),
             color=GOOD, lw=1.8)
-    ax.text(8.4, 3.38, r"vs $\delta\tau$", ha="center", fontsize=8,
+    ax.text(8.4, 3.30, r"vs $\delta\tau$", ha="center", fontsize=8,
             color=GOOD, va="top")
     ax.plot([7.9, 7.6], [2.2, 3.35], color=INK, lw=1.1, ls=":")
     ax.plot([6.0, 7.4], [3.85, 3.9], color=INK, lw=1.1, ls=":")
@@ -662,5 +687,92 @@ def mode_blind():
     ax.set_ylim(-0.55, 6.5)
     ax.set_title(r"$g^{(2)}$'s blind spot: counting certifies the photon"
                  " number, never the mode", fontsize=13)
+    plt.tight_layout()
+    plt.show()
+
+
+def pqc_architecture():
+    """Quandela-style photonic quantum computer: QD source -> demux ->
+    universal interferometer chip -> SNSPDs."""
+    fig, ax = _canvas(11.2, 4.8)
+    YS = (3.05, 2.35, 1.65)          # the three processor rails
+
+    # --- source cryostat with QD micropillar
+    ax.add_patch(Rectangle((0.3, 1.1), 2.15, 2.5, facecolor="#eef2f7",
+                           edgecolor=INK, lw=1.2, ls="--"))
+    ax.text(1.37, 3.72, "cryostat · 4 K", ha="center", fontsize=9, color=INK)
+    for y in np.arange(1.55, 2.15, 0.14):        # lower DBR mirror stack
+        ax.plot([0.85, 1.35], [y, y], color=INK, lw=1.8)
+    for y in np.arange(2.62, 3.22, 0.14):        # upper DBR mirror stack
+        ax.plot([0.85, 1.35], [y, y], color=INK, lw=1.8)
+    ax.add_patch(Circle((1.1, 2.37), 0.09, facecolor=HOT, zorder=5))
+    ax.text(0.62, 1.28, "QD in a micropillar", fontsize=8.5, color=INK)
+    ax.annotate("", xy=(0.95, 2.37), xytext=(0.42, 2.9),
+                arrowprops=dict(arrowstyle="-|>", color=GOOD, lw=1.6,
+                                linestyle="--"))
+    ax.text(0.38, 3.02, "pump", fontsize=8.5, color=GOOD)
+
+    # --- photon train out of the cryostat
+    ax.plot([1.35, 4.25], [2.37, 2.37], color=INK, lw=1.0)
+    for x in (2.75, 3.35, 3.95):
+        _photon(ax, x, 2.37)
+    ax.text(3.35, 1.95, "single-photon train\n(80 MHz clock)", ha="center",
+            fontsize=8.5, color=INK)
+
+    # --- demultiplexer
+    ax.add_patch(Rectangle((4.25, 1.95), 0.85, 0.85, facecolor="#d9e6f2",
+                           edgecolor=INK, lw=1.5))
+    ax.text(4.67, 2.37, "demux", ha="center", va="center", fontsize=9,
+            color=INK)
+    for y in YS:
+        ax.plot([5.1, 5.75], [2.37 + (y - 2.35) * 0.55, y], color=INK, lw=1.0)
+        ax.plot([5.75, 6.15], [y, y], color=INK, lw=1.0)
+        _photon(ax, 5.95, y)
+    ax.text(4.67, 1.62, "time $\\to$ space", ha="center", fontsize=8.5,
+            color=INK)
+
+    # --- universal interferometer chip
+    ax.add_patch(Rectangle((6.15, 1.15), 2.6, 2.45, facecolor="#eef7ee",
+                           edgecolor=INK, lw=1.5))
+    for y in YS:
+        ax.plot([6.15, 8.75], [y, y], color=INK, lw=1.4)
+    for (x0, y1, y2) in ((6.55, YS[0], YS[1]), (7.55, YS[1], YS[2]),
+                         (6.55, YS[2], YS[2]), (7.55, YS[0], YS[0])):
+        if y1 != y2:                      # an MZI coupling two rails
+            ax.plot([x0, x0 + 0.25, x0 + 0.55, x0 + 0.8],
+                    [y1, y2, y2, y1], color=ACCENT, lw=1.6)
+            ax.plot([x0, x0 + 0.25, x0 + 0.55, x0 + 0.8],
+                    [y2, y1, y1, y2], color=ACCENT, lw=1.6)
+    for x, y in ((7.0, YS[1]), (8.0, YS[2]), (8.3, YS[0])):
+        ax.add_patch(Rectangle((x - 0.12, y + 0.06), 0.24, 0.12,
+                               facecolor="orange", edgecolor=INK, lw=0.8))
+    ax.text(7.45, 3.72, "universal interferometer — any $U(\\vec\\varphi)$",
+            ha="center", fontsize=9, color=INK)
+    ax.text(7.45, 0.82, "your Perceval circuit compiles here",
+            ha="center", fontsize=9, color=GOOD)
+
+    # --- detector cryostat with SNSPDs
+    ax.add_patch(Rectangle((8.95, 1.1), 1.55, 2.5, facecolor="#eef2f7",
+                           edgecolor=INK, lw=1.2, ls="--"))
+    ax.text(9.72, 3.72, "SNSPDs · 1 K", ha="center", fontsize=9, color=INK)
+    for y in YS:
+        ax.plot([8.75, 9.35], [y, y], color=INK, lw=1.0)
+        _detector(ax, 9.55, y, angle=180, label="")
+        ax.plot([9.75, 10.15], [y, y], color=INK, lw=1.0)
+        ax.plot([10.15, 10.3], [y, y], color=GOOD, lw=2.0)
+    ax.text(9.72, 1.28, "clicks out", ha="center", fontsize=8.5, color=INK)
+
+    # --- the spec sheet is this course
+    ax.text(1.37, 0.55, "$1 - g^{(2)}(0) > 99\\%$", ha="center",
+            fontsize=9.5, color=HOT)
+    ax.text(3.35, 0.55, "pairwise HOM $V \\gtrsim 90\\%$", ha="center",
+            fontsize=9.5, color=HOT)
+    ax.text(2.35, 0.18, "the acceptance tests are exactly Lectures 3–5",
+            ha="center", fontsize=8.5, color=INK)
+
+    ax.set_xlim(0, 11.2)
+    ax.set_ylim(0, 4.3)
+    ax.set_title("A photonic quantum computer, end to end "
+                 "(Quandela architecture)", fontsize=12.5)
     plt.tight_layout()
     plt.show()
